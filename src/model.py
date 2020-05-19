@@ -520,6 +520,7 @@ class MTask(Seq2SeqBase):
 		path_word2vec=None,
 		):
 
+		self.vali_count = 0
 		self.fld = fld
 		self.token_embed_dim = token_embed_dim
 		self.rnn_units = rnn_units
@@ -638,6 +639,12 @@ class MTask(Seq2SeqBase):
 
 		dt = (datetime.datetime.now() - t0).seconds
 		loss = np.mean(self.history.losses)
+
+		if self.vali_count < 10:
+			self.vali_count += 1
+			return n_sample
+		else:
+			self.vali_count = 0
 
 		# vali --------------------
 		loss_vali = self.vali()
