@@ -81,7 +81,7 @@ def run_s2s(name, mode, args):
 		if args.load_1_batch == 1:
 			batch_per_load = 1
 		else:
-			batch_per_load = 50
+			batch_per_load = 6
 		s2s.train(batch_size, args.epochs, batch_per_load, skip=args.skip, epoch_init=args.epoch_load)
 
 	elif 'interact' in mode:
